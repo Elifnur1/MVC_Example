@@ -1,0 +1,56 @@
+﻿<div class="text-center">
+
+  <h1>Yeni Ürün Ekle</h1>
+  <form action="Create" method="post">
+
+    <div>
+      <label for="" Name">Ürün Adı:</label>
+      <input type="text" id="Name" name="Name" required />
+    </div>
+    <div>
+      <label for="Price">Fiyat:</label>
+      <input type="number" id="Price" name="Price" required />
+    </div>
+    <div>
+      <button type="submit">Ekle</button>
+    </div>
+
+
+  </form>
+  <h1>Ürün listesi</h1>
+  <a href="/Home/Create">Yeni Ürün Ekle</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Ürün Adı</th>
+        <th>Fiyat</th>
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var product in Model)
+      {
+        <tr>
+          <li>@product.Id</li>
+          <li>@product.Name</li>
+          <li>@product.Price</li>
+          <td>
+            <a href="/Home/Details/@product.Id">Detay</a> |
+            <a href="/Home/Delete/@product.Id">Sil</a>
+          </td>
+        </tr>
+      }
+    </tbody>
+    <h1>Ürün Sil</h1>
+    <p>@Model.Name adlı ürünü silmek istediğinizden emin misiniz?</p>
+    <form action="DeletedConfirmed" method="post">
+      <input type="hidden" name="id" value="@Model.Id" />
+      <button type="submit">Sil</button>
+    </form>
+    <a href="/">Geri Dön</a>
+  </table>
+</div>
